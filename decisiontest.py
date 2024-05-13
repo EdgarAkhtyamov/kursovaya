@@ -77,3 +77,24 @@ with open('dataset.csv', 'r') as dataset:
     print("Accuracy on test set: {:.3f}".format(clf.score(x_test, y_test)))
 
 '''
+
+
+
+parameters = {
+    'max_depth': [10, 20, 30, None],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+scorer = make_scorer(accuracy_score)
+
+
+grid_obj = GridSearchCV(dt, parameters, scoring=scorer)
+grid_fit = grid_obj.fit(X_train, y_train)
+
+
+best_dt = grid_fit.best_estimator_
+
+predictions = best_dt.predict(X_test)
+
+acc = accuracy_score(y_test, predictions)
