@@ -20,27 +20,19 @@ class TestAlgorithm(unittest.TestCase):
         return cost[row_ind, col_ind].sum()
 
     def test_Graph(self):
-        with open("test1.txt", "w") as f:
-            dict = {}
             for i in range(5, 100):
                 matrix_ef = []
                 for _ in range(i):
-                    matrix_ef.append([0] * i)  # выделяем место под матрицу
+                    matrix_ef.append([0] * i)  
 
                 for row in range(0, i):
                     for col in range(0, i):
-                        matrix_ef[row][col] = int(random.randint(1, 10))  # заполняем значения
+                        matrix_ef[row][col] = int(random.randint(1, 10)) 
 
-                #print(matrix_ef, self.algos.graph(matrix_ef))  # выводим результат работы солвера и алгоритма
-
-                f.writelines(str(matrix_ef) + " " + str(self.algos.graph(matrix_ef)) + '\n')
-
-                dict[str(matrix_ef)] = self.algos.graph(matrix_ef)
+                print(matrix_ef, self.algos.graph(matrix_ef))  
 
                 self.assertEqual(self.algos.graph(matrix_ef), self.solve(matrix_ef))
-            x = json.dumps(dict)
-            with open("dataset.json", 'w') as dataset:
-                json.dump(x, dataset)
+            
 
 if __name__ == '__main__':
     unittest.main()
