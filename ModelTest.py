@@ -33,24 +33,17 @@ def measure_execution_time(matrix_size):
     return training_time, prediction_time, training_accuracy, testing_accuracy
 
 
-# Measure execution time for different matrix sizes
 results = []
-matrix_sizes = range(10, 101, 10)  # From 10 to 100 with step 10
+matrix_sizes = range(10, 101, 10)  
 for size in matrix_sizes:
     training_time, prediction_time, train_acc, test_acc = measure_execution_time(size)
     results.append((size, training_time, prediction_time, train_acc, test_acc))
-    print(f"Размер матрицы: {size}x{size}, Время обучения: {training_time:.4f}s, Время предсказывания: {prediction_time:.4f}s, "
-          f"Точность на обучении: {train_acc:.4f}, Точность на тестировании: {test_acc:.4f}")
+    print(f"Размер матрицы: {size}x{size}, Время обучения: {training_time:.4f}s, Время предсказывания: {prediction_time:.4f}s, f"Точность на обучении: {train_acc:.4f}, Точность на тестировании: {test_acc:.4f}")
 
-# Convert results to a DataFrame for better visualization
-results_df = pd.DataFrame(results,
-                          columns=["Размер матрицы", "Время обучения (s)", " Время предсказывания(s)", "Точность на обучении",
-                                   "Точность на тестировании"])
+results_df = pd.DataFrame(results, columns=["Размер матрицы", "Время обучения (s)", " Время предсказывания(s)", "Точность на обучении","Точность на тестировании"])
 
-# Display the DataFrame
 print(results_df)
 
-# Plot the results
 fig, ax1 = plt.subplots()
 
 ax1.set_xlabel('Matrix Size')
